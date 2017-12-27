@@ -16,68 +16,60 @@ let clearField = document.getElementById("clearField");
 let fahrenheit = document.getElementById("fahrenheit");
 let celsius = document.getElementById("celsius");
 let output = document.getElementById('your_temp');
+let inputVal = tempInput.value;
+// creating variables for input conversion to create integers instead of strings for the comparison style function?
+farOutputVal = '';
+celOutputVal = '';
 
 clearField.addEventListener("click", function(){
     tempInput.value = ""
 });
 
-convertBtn.addEventListener("click", function(){
+convertBtn.addEventListener('click', ()=>{
     let inputVal = tempInput.value;
-    if(fahrenheit.checked === true){
-        output.innerHTML = ((inputVal-32)/1.8) + ' Celsius';
-        console.log('it fucking works')
-    }else if(celsius.checked === true){
-        output.innerHTML = ((inputVal*1.8)+32) + ' Fahrenheit';
-    }else{
-        output.innerHTML = 'Select a measure of Temperature';
+    if(fahrenheit.checked){
+        celOutputVal = ((inputVal-32)/1.8);
+        
+        if(celOutputVal < 0){
+            output.classList.toggle('cold_temp');
+        }
+        else if (celOutputVal > 32){
+            output.classList.toggle('hot_temp');
+        }
+        else{
+            output;
+        }
+    output.innerHTML = celOutputVal;
     }
-    
+    else if(celsius.checked){
+        farOutputVal = ((inputVal*1.8)+32);
+        if(farOutputVal < 32){
+            output.classList.toggle('cold_temp');
+        }
+        else if (farOutputVal > 89){
+            output.classList.toggle('hot_temp');
+        }
+        else{
+            output;
+        }
+    output.innerHTML = farOutputVal;
+    }
+    else{
+        console.log('nothing');
+    }
 });
-// function toCelsius (your_temp) {
-            var determineconvert = function(){
-                if(fahrenheit.checked){
-                    (tempInput - 32) / 1.8;
-                }
-                else if (celsius.checked) {
-                    (tempInput * 1.8) + 32;
-                }
-                else { console.log('nothing here')
-            
-                }
-            }
-//     document.getElementById("your_temp").innerHTML;
-//    }
-    
-// //     function toFahrenheit () {
-    
-// //     }
-    
-// //     // Get a reference to the button element in the DOM
-// //     var button = document.getElementById("converter");
-    
-// //     // This function should determine which conversion should
-// //     // happen based on which radio button is selected.
-// //     function determineConverter (clickEvent) {
-// //       console.log("event", clickEvent);
-// //     }
-    
-// //     // Assign a function to be executed when the button is clicked
-    
 
-// let checkinputs = function(){
-//     if(tempInput.value != ""){
-//         determineconvert;
+// let styleconvert= (something) => {
+//         if(farInputVal.value < 32 ){
+//             
+//         }
+
+//     else if (fahrenheit.checked && output > 32 || celsius.checked && output >90){
+//         output.classList.add('hot_temp');
 //     }
-//     else{
-//         alert("nothing here");
+//     else {
+//         console.log('nope')
 //     }
-// }
+  
+// };
 
-
-// convertBtn.addEventListener("click",checkinputs);
-
-
-// function to determine which button is active
-
-
-// console.log(determineconvert)
